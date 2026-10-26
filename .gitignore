@@ -1,0 +1,11 @@
+# configuracion real de la base de datos (se copia desde config.example.php)
+config/config.php
+
+# respaldos y archivos temporales
+*.sql.gz
+*.tar.gz
+*.log
+backups/
+
+# variables de entorno
+.env
