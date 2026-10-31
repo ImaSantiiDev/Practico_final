@@ -1,0 +1,171 @@
+/* public/estilos.css
+   Estilos basicos de la aplicacion */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Segoe UI", Arial, sans-serif;
+    background: #f4f4f4;
+    color: #222;
+}
+
+header {
+    background: #1a4f7a;
+    color: #fff;
+    padding: 15px 25px;
+}
+
+header h1 a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 22px;
+}
+
+nav {
+    margin-top: 8px;
+}
+
+nav a {
+    color: #cde;
+    margin-right: 15px;
+    text-decoration: none;
+}
+
+nav a:hover {
+    color: #fff;
+    text-decoration: underline;
+}
+
+main {
+    max-width: 900px;
+    margin: 25px auto;
+    padding: 20px;
+    background: #fff;
+    border-radius: 6px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.15);
+}
+
+h2 {
+    margin-bottom: 15px;
+    color: #1a4f7a;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 8px 10px;
+    border-bottom: 1px solid #ddd;
+    text-align: left;
+}
+
+th {
+    background: #eef3f8;
+}
+
+tr:hover td {
+    background: #f7fbff;
+}
+
+.acciones a {
+    margin-right: 8px;
+    padding: 4px 10px;
+    border-radius: 4px;
+    text-decoration: none;
+    color: #fff;
+    font-size: 13px;
+}
+
+.btn-editar {
+    background: #2e8b57;
+}
+
+.btn-eliminar {
+    background: #b03030;
+}
+
+.btn {
+    display: inline-block;
+    padding: 8px 16px;
+    background: #1a4f7a;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.btn:hover {
+    background: #123a5a;
+}
+
+form dl {
+    max-width: 420px;
+    margin-bottom: 15px;
+}
+
+form dt {
+    margin-top: 12px;
+    font-weight: bold;
+}
+
+form dd {
+    margin-top: 3px;
+}
+
+input, select, textarea {
+    width: 100%;
+    padding: 6px 8px;
+    border: 1px solid #bbb;
+    border-radius: 4px;
+}
+
+textarea {
+    resize: vertical;
+}
+
+.errores {
+    background: #ffe5e5;
+    border: 1px solid #d66;
+    color: #900;
+    padding: 10px;
+    border-radius: 4px;
+    margin-bottom: 15px;
+}
+
+.mensaje-ok {
+    background: #e2f7e2;
+    border: 1px solid #3a3;
+    color: #160;
+    padding: 10px;
+    border-radius: 4px;
+    margin-bottom: 15px;
+}
+
+.mensaje-error {
+    background: #ffe5e5;
+    border: 1px solid #d66;
+    color: #900;
+    padding: 10px;
+    border-radius: 4px;
+    margin-bottom: 15px;
+}
+
+.vacio {
+    padding: 20px;
+    text-align: center;
+    color: #777;
+}
+
+footer {
+    text-align: center;
+    color: #888;
+    font-size: 13px;
+    margin: 30px 0 15px 0;
+}
