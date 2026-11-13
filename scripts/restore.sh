@@ -76,6 +76,9 @@ elif [[ "$FUENTE" == app_*.tar.gz ]]; then
     chown -R webadmin:desarrolladores "$DIR_APP"
     find "$DIR_APP" -type d -exec chmod 2775 {} \;
     find "$DIR_APP" -type f -exec chmod 0664 {} \;
+    # config.php necesita grupo www-data para que apache lo lea
+    chown webadmin:www-data "$DIR_APP/config/config.php" 2> /dev/null || true
+    chmod 0640 "$DIR_APP/config/config.php" 2> /dev/null || true
     echo ">> aplicacion restaurada en $DIR_APP"
 
 else

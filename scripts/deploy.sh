@@ -58,6 +58,11 @@ chown -R webadmin:desarrolladores "$APLICACION" >> "$LOG" 2>&1
 find "$APLICACION" -type d -exec chmod 2775 {} \; >> "$LOG" 2>&1
 find "$APLICACION" -type f -exec chmod 0664 {} \; >> "$LOG" 2>&1
 
+# config.php: apache (www-data) tiene que poder leerlo,
+# asi que el grupo de ese archivo es www-data y no desarrolladores
+chown webadmin:www-data "$APLICACION/config/config.php" >> "$LOG" 2>&1
+chmod 0640 "$APLICACION/config/config.php" >> "$LOG" 2>&1
+
 # commit que quedo instalado
 INSTALADO=$(sudo -u webadmin git log -1 --format='%h %s')
 echo ">> instalado: $INSTALADO" >> "$LOG"
