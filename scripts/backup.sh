@@ -64,7 +64,7 @@ RUTA_REMOTA="${B2_BUCKET:-almacen-backups}"
 if command -v rclone > /dev/null 2>&1; then
     if rclone lsd "${REMOTO}:" > /dev/null 2>&1; then
         rclone copy "$BACKUP_DB" "${REMOTO}:${RUTA_REMOTA}" --transfers 4 >> "$LOG" 2>&1
-        rclone copy "$BACKUP_APP" "${REMOTA}:${RUTA_REMOTA}" --transfers 4 >> "$LOG" 2>&1
+        rclone copy "$BACKUP_APP" "${REMOTO}:${RUTA_REMOTA}" --transfers 4 >> "$LOG" 2>&1
         echo ">> copia a ${REMOTO}:${RUTA_REMOTA} OK" >> "$LOG"
 
         # retencion en la nube: borrar los que tienen mas de 4 semanas
