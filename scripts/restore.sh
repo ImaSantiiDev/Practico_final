@@ -19,22 +19,25 @@ set -o pipefail
 DIR_BACKUP="/var/www/backups"
 DIR_APP="/var/www/almacen"
 BASE_DATOS="almacen_db"
-REMOTO="b2-almacen"
-BUCKET_DIR="almacen-backups"
+REMOTO="${RCLONE_REMOTE:-b2almacen}"
 
-if [ "$(id -u)" -ne 0 ]; then
-    echo "Este script hay que correrlo con sudo (necesita root)."
-    exit 1
-fi
+# credenciales de B2 (solo root)
+set -a
+. /etc/almacen/env-b2 2> /dev/null || true
+set +a
+RUTA_REMOTA="${B2_BUCKET:-almacen-backups}"
 
 # se puede pasar --nube para bajarlo primero de B2
 FUENTE=""
 if [ "$1" = "--nube" ]; then
     ARCHIVO_NUBE="$2"
-    DESTINO="/tmp/${ARCHIVO_NUBE}"
-    echo ">> bajando $ARCHIVO_NUBE desde ${REMOTO}:${BUCKET_DIR}"
-    rclone copy "${REMOTO}:${BUCKET_DIR}/${ARCHIVO_NUBE}" /tmp --transfers 4
-    FUENTE="$DESTINO"
+    if [ -z "$ARCHIVO_NUBE" ]; then
+        echo "Falta el nombre del archivo en la nube."
+        exit 1
+    fi
+    echo ">> bajando $ARCHIVO_NUBE desde ${REMOTO}:${RUTA_REMOTA}"
+    rclone copy "${REMOTO}:${RUTA_REMOTA}/${ARCHIVO_NUBE}" /tmp --transfers 4
+    FUENTE="/tmp/${ARCHIVO_NUBE}"
     shift 2
 else
     FUENTE="$1"
