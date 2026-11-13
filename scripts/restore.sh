@@ -56,7 +56,7 @@ fi
 # ---------------------------------------------------------------
 # 1) dump de la base de datos
 # ---------------------------------------------------------------
-if [[ "$FUENTE" == db_*.sql.gz ]]; then
+if [[ "$(basename "$FUENTE")" == db_*.sql.gz ]]; then
     echo ">> restaurando la base de datos $BASE_DATOS desde $(basename "$FUENTE")"
     gunzip -c "$FUENTE" | mysql "$BASE_DATOS"
     echo ">> base de datos restaurada"
@@ -65,7 +65,7 @@ if [[ "$FUENTE" == db_*.sql.gz ]]; then
 # ---------------------------------------------------------------
 # 2) archivos de la aplicacion
 # ---------------------------------------------------------------
-elif [[ "$FUENTE" == app_*.tar.gz ]]; then
+elif [[ "$(basename "$FUENTE")" == app_*.tar.gz ]]; then
     echo ">> guardando copia de la version actual en /tmp"
     if [ -d "$DIR_APP" ]; then
         tar -czf "/tmp/app_actual_$(date +%Y%m%d_%H%M%S).tar.gz" \
@@ -82,7 +82,7 @@ elif [[ "$FUENTE" == app_*.tar.gz ]]; then
     echo ">> aplicacion restaurada en $DIR_APP"
 
 else
-    echo "ERROR: no se reconoce el tipo de archivo: $FUENTE"
+    echo "ERROR: no se reconoce el tipo de archivo: $(basename "$FUENTE")"
     echo "Tiene que ser db_*.sql.gz o app_*.tar.gz"
     exit 1
 fi
