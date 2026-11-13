@@ -63,6 +63,15 @@ find "$APLICACION" -type f -exec chmod 0664 {} \; >> "$LOG" 2>&1
 chown webadmin:www-data "$APLICACION/config/config.php" >> "$LOG" 2>&1
 chmod 0640 "$APLICACION/config/config.php" >> "$LOG" 2>&1
 
+# 6) actualizar las copias de los scripts en /usr/local/bin
+#    (son copias y no enlaces para que el deploy tambien pueda
+#     actualizar sus propios scripts con cada deploy)
+echo ">> actualizando scripts en /usr/local/bin" >> "$LOG"
+install -o root -g root -m 755 "$APLICACION/scripts/deploy.sh"          /usr/local/bin/deploy.sh
+install -o root -g root -m 755 "$APLICACION/scripts/backup.sh"          /usr/local/bin/backup.sh
+install -o root -g root -m 755 "$APLICACION/scripts/restore.sh"         /usr/local/bin/restore.sh
+install -o root -g root -m 755 "$APLICACION/scripts/gestion_usuarios.sh" /usr/local/bin/gestion_usuarios.sh
+
 # commit que quedo instalado
 INSTALADO=$(sudo -u webadmin git log -1 --format='%h %s')
 echo ">> instalado: $INSTALADO" >> "$LOG"
